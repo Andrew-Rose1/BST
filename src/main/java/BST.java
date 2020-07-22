@@ -30,23 +30,141 @@ class BST {
       }
   }
 
+
+
   // search
   public boolean search(int target) {
-    // remove this line
-    return false;
+    return search(root, target);
   }
+
+
 
   // insert
   public Node insert(int target) {
-    // remove this line
+    root = insert(root, target);
     return root;
   }
+
+
 
   // note: you may need to implement several supporting methods for delete
   public Node delete(int target) {
-    // remove this line
+    delete(get(target));
     return root;
   }
 
+
+
   // you are welcome to add any supporting methods
+  public boolean search(Node node, int target) {
+    if (node == null) {
+      return false;
+    } else if (node != null && node.key == target) {
+      return true;
+    }
+    if (target < node.key) {
+      return search(node, target);
+    } else {
+      return search(node, target);
+    }
+  }
+
+
+// Inserts a value into a BST given a node
+  public Node insert(Node node, int val) {
+    if (node == null) {
+      return new Node(val);
+    }
+    if (val < node.key) {
+      node.left = insert(node.left, val);
+    } else {
+      node.right = insert(node.right, val);
+    }
+    return node;
+  }
+
+
+
+  public void replace_node_in_parent(Node node, Node newNode) {
+    if (node.parent == null) {
+      newNode.parent = newNode;
+      return;
+    }
+    //TESTING// System.out.println("We got here.. So Node.parent is not null. Current Node is: " + node + "And newNode is " + newNode);
+    if (node.parent.left == node) {
+      //TESTING// System.out.println("Replacing " + node.parent.left + "with " + newNode);
+      node.parent.left = newNode;
+    } else {
+      //TESTING// System.out.println("Replacing " + node.parent.right + "with " + newNode);
+      node.parent.right = newNode;
+    }
+  }
+
+
+
+  public int find_next_smallest(Node node) {
+    Node current_node = node.right;
+    while (current_node.left != null) {
+      current_node = current_node.left;
+    }
+    return current_node.key;
+  }
+
+
+
+  public Node get(int val) {
+    return get(root, val);
+  }
+
+
+
+
+  public Node get(Node node, int val) {
+    if (node == null) {
+      return null;
+    }
+    if (val < node.key) {
+      return get(node.left, val);
+    } else if (val > node.key) {
+      return get(node.right, val);
+    } else {
+      return node;
+    }
+  }
+
+
+
+  public void delete(Node node) {
+    if (node.right == null && node.left == null) {
+      replace_node_in_parent(node, null);
+    } else if (node.right == null && node.left != null) {
+      replace_node_in_parent(node, node.left);
+    } else if (node.right != null && node.left == null) {
+      replace_node_in_parent(node, node.right);
+    } else {
+      int val2 = find_next_smallest(node);
+      Node node_smallest = get(val2);
+      delete(node_smallest);
+      node.key = val2;
+    }
+  }
+
+
+
+
+  public Node returnRoot() {
+    return root;
+  }
+
+
+
+
+  public void clearArrayList() {
+    data.clear();
+  }
+
+
+
+
+
 }
