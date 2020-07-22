@@ -87,15 +87,12 @@ class BST {
 
   public void replace_node_in_parent(Node node, Node newNode) {
     if (node.parent == null) {
-      newNode.parent = newNode;
+      node.parent = newNode;
       return;
     }
-    //TESTING// System.out.println("We got here.. So Node.parent is not null. Current Node is: " + node + "And newNode is " + newNode);
     if (node.parent.left == node) {
-      //TESTING// System.out.println("Replacing " + node.parent.left + "with " + newNode);
       node.parent.left = newNode;
     } else {
-      //TESTING// System.out.println("Replacing " + node.parent.right + "with " + newNode);
       node.parent.right = newNode;
     }
   }
@@ -135,6 +132,10 @@ class BST {
 
 
   public void delete(Node node) {
+    if (node == null) {
+      System.out.print("Failed to remove. DNE in this BST");
+      return;
+    }
     if (node.right == null && node.left == null) {
       replace_node_in_parent(node, null);
     } else if (node.right == null && node.left != null) {
