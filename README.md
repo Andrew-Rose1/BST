@@ -1,7 +1,5 @@
-# cs241-lab4
+# BST
 
-[![Build Status](https://travis-ci.com/wwu-csci-241-online/lab4-Andrew-Rose1.svg?token=T1EjxfTcCJBWjRcYLWUM&branch=master)](https://travis-ci.com/wwu-csci-241-online/lab4-Andrew-Rose1)
+This program manipulates BST's through inserting and delting values. This program also can find the minimum absolute difference in a BST.
 
-My Name: Andrew Rose
-
-About This Project: This program manipulates BST's through inserting and delting values. This program also can find the minimum absolute difference in a BST.
+Written and completed as a project at Western Washington University for CSCI241 in Summer 2020 quarter.
